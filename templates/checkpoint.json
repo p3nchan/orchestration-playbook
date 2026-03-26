@@ -1,0 +1,21 @@
+{
+  "_comment": "Checkpoint template. Copy and adapt for your project.",
+  "phase": 1,
+  "step": "current_step_name",
+  "completed": [
+    "step_1_name",
+    "step_2_name"
+  ],
+  "next": "next_step_to_execute",
+  "artifacts": [
+    "artifacts/step1-output.md",
+    "artifacts/step2-output.md"
+  ],
+  "pending_tasks": [
+    "task-id-1",
+    "task-id-2"
+  ],
+  "cost_estimate_usd": 0.00,
+  "error_log": [],
+  "updated_at": "2026-01-01T00:00:00Z"
+}

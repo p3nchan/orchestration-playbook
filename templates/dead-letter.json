@@ -1,0 +1,14 @@
+{
+  "_comment": "Dead letter template. Created when a task exhausts all retries.",
+  "task_id": "example-task-2026-03-15",
+  "original_task": "Description of what the task was supposed to do",
+  "error": "The final error message",
+  "error_type": "transient",
+  "attempts": 3,
+  "first_attempt": "2026-03-15T09:00:00Z",
+  "last_attempt": "2026-03-15T09:15:00Z",
+  "context_summary": "Why this task matters and what depends on it",
+  "retry_after": "2026-03-15T10:00:00Z",
+  "priority": "medium",
+  "related_circuit_breaker": "provider-name"
+}
