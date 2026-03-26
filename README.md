@@ -1,4 +1,8 @@
-# Agent Orchestration Playbook
+<p align="center">
+  <img src="assets/banner.webp" alt="Orchestration Playbook" width="100%">
+</p>
+
+# Orchestration Playbook
 
 **Battle-tested patterns for running multi-agent AI systems in production.** Not theory. Not a framework. Operational patterns from months of running 5+ agents across multiple models, distilled into reusable practices.
 
