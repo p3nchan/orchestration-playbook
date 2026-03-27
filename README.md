@@ -4,6 +4,8 @@
 
 # Orchestration Playbook
 
+> **🇹🇼 中文網頁版** — [penchan.co/ai/orchestration-playbook](https://penchan.co/ai/orchestration-playbook/)
+
 **Battle-tested patterns for running multi-agent AI systems in production.** Not theory. Not a framework. Operational patterns from months of running 5+ agents across multiple models, distilled into reusable practices.
 
 > Most multi-agent resources tell you *what* to build. This tells you *how to keep it running* -- file-based communication, failure recovery, cost control, human escalation, model selection. The boring stuff that makes the difference between a demo and a system.
@@ -26,6 +28,8 @@
 
 ## Table of Contents
 
+<img src="assets/sections/patterns.webp" alt="Patterns" width="100%">
+
 ### Patterns
 
 Core operational patterns for multi-agent coordination:
@@ -40,6 +44,8 @@ Core operational patterns for multi-agent coordination:
 | [Checkpoint & Resume](patterns/checkpoint-resume.md) | Survive session crashes without losing progress | Long-running or multi-phase tasks |
 | [Dead Letter Queue](patterns/dead-letter-queue.md) | Failed tasks don't disappear -- they wait for retry | Systems that can't afford to drop work |
 | [Completion Notification](patterns/completion-notification.md) | Agents must report done/failed, never go silent | Every agent interaction |
+
+<img src="assets/sections/guides.webp" alt="Guides" width="100%">
 
 ### Guides
 
