@@ -4,7 +4,7 @@
 
 # Orchestration Playbook
 
-> **🇹🇼 中文網頁版** — [penchan.co/ai/orchestration-playbook](https://penchan.co/ai/orchestration-playbook/)
+> **🐧 中文網頁版** — [penchan.co/ai/orchestration-playbook](https://penchan.co/ai/orchestration-playbook/)
 
 **Battle-tested patterns for running multi-agent AI systems in production.** Not theory. Not a framework. Operational patterns from months of running 5+ agents across multiple models, distilled into reusable practices.
 
