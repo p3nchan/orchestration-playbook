@@ -74,6 +74,24 @@ Using different model providers (not just different tiers) adds value:
 - **Tight budget**: Multi-model means multi-cost
 - **Tight latency**: Parallel calls to multiple providers still take wall-clock time
 
+## Cross-Family Review Evidence
+
+The strongest empirical case for multi-model usage is review, not generation.
+
+Research from Kim et al. in 2025 across 350+ LLMs found same-family error correlation was higher than cross-family correlation. Research from Young in 2026 pushes the idea further: when agents share the same training data, debate approaches zero benefit; when they come from different families, the value becomes meaningful.
+
+That leads to a practical rule:
+
+> Use a different model family for review whenever the review matters.
+
+Claude reviewing GPT code, or GPT reviewing Claude code, is not just aesthetic diversity. It is the design choice with the clearest evidence behind it.
+
+There is a limit. Research from Goel et al. at ICML 2025 found up to 90% output similarity among frontier models. Cross-family review improves your odds, but do not expect it to catch everything. Some blind spots are universal.
+
+### Special case: review-tuned models
+
+OpenAI's CriticGPT was trained specifically for code review via RLHF and was preferred over human critiques in 63% of cases for naturally occurring LLM errors. If you have access to a review-tuned model, use it for review. Review is one of the few places where specialization clearly pays.
+
 ## Anti-Patterns
 
 ### Using the expensive model for everything

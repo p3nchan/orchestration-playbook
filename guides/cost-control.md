@@ -42,6 +42,24 @@ Task hits budget limit →
   4. Orchestrator decides: allocate more budget, accept partial result, or escalate
 ```
 
+## Token Budget as a Health Signal
+
+A budget is not just a spending limit. It is also a diagnostic signal.
+
+Research from the OpenHands SWE-bench work found higher token usage correlated with **lower** accuracy. Expensive runs were often failing runs that kept retrying. METR reported agent performance plateauing around 200K tokens regardless of budget. Even GPT-5.1-Codex-Max with a 32M-token budget showed only modest productive use beyond 5M tokens.
+
+The practical lesson: once a task blows past its expected budget, treat that as a **stuck signal**, not as evidence the agent is "almost done."
+
+### Budget by task tier
+
+| Task Tier | Expected Token Shape | Stuck Signal |
+|-----------|----------------------|--------------|
+| **Simple** | Tens of thousands | Exceeds 2x plan |
+| **Medium** | Low six figures | Exceeds 1.5x plan |
+| **Complex** | Up to ~200K before checkpointing | Keeps growing without new artifacts |
+
+If the budget is exceeded, stop and ask why. The answer is usually bad decomposition, weak specs, or a fix loop that should have escalated.
+
 ## Context Pruning
 
 The single biggest cost driver is **bloated prompts**. Every token in the prompt costs money on every turn.
@@ -159,6 +177,21 @@ Track costs at the project level. A simple approach:
 | Daily spend > 50% of weekly budget | Notify human |
 | Single task > 150% of estimated cost | Stop + escalate |
 | Weekly budget exhausted | Gate all new tasks until next week |
+
+## Orchestration Overhead
+
+Multi-agent systems have real coordination tax. Research from DeepMind found communication overhead scaling at an exponent of 1.724, which is close to quadratic. In practice, a 4-agent pipeline can cost roughly 3.5x the tokens of a single-agent flow once coordination is included. SoftwareSeni reported 40-50% coordination overhead in execution time, and AgentTaxo's analysis of systems like MetaGPT, CAMEL, and AgentVerse found verification phases consuming 72% of all tokens.
+
+There is also an information-theory trap here. Under equal token budgets, single-agent systems often match or outperform multi-agent systems on multi-hop reasoning because communication loses information instead of creating it.
+
+### Practical rules
+
+| Rule | Why |
+|------|-----|
+| **Max 3-4 agents** | Diminishing returns kick in fast |
+| **Only parallelize independent work** | Shared dependencies turn agents into overhead |
+| **Treat verification as the main cost center** | In many systems, review burns more tokens than execution |
+| **If one agent can finish in-budget, do that** | Orchestration is not free rigor |
 
 ## The 80/20 of Cost Optimization
 

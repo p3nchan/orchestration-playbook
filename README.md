@@ -38,6 +38,7 @@ Core operational patterns for multi-agent coordination:
 |---------|---------|-----------------|
 | [File Blackboard](patterns/file-blackboard.md) | Agents communicate through files, not messages | Always -- this is the foundation |
 | [Task Envelope](patterns/task-envelope.md) | Structured task packaging for subagents | Every time you spawn a subagent |
+| [Challenge Loop](patterns/challenge-loop.md) | Evidence-based adversarial review with anti-sycophancy | Spec reviews, algorithm validation, any iterative refinement |
 | [Circuit Breaker](patterns/circuit-breaker.md) | Stop cascading failures before they burn your budget | Any system with retries or external APIs |
 | [HITL Escalation](patterns/hitl-escalation.md) | Three-tier human-in-the-loop gating | Any autonomous system with real-world side effects |
 | [Structured Error Events](patterns/structured-error-events.md) | Standard format for agent status reporting | Multi-step workflows with dependencies |
@@ -56,6 +57,9 @@ Practical guides for day-to-day operations:
 | [Model Selection](guides/model-selection.md) | When to use expensive vs cheap models -- with a decision matrix |
 | [Error Handling](guides/error-handling.md) | The 5-layer fallback pyramid and retry-vs-restart decision tree |
 | [Cost Control](guides/cost-control.md) | Per-task budgets, context pruning, and anti-patterns that burn money |
+| [Code Review](guides/code-review.md) | Cross-family review beats self-review -- here's the evidence |
+| [Spec-Driven Development](guides/spec-driven-development.md) | Spec quality is the bottleneck, not review stages |
+| [Development Pipeline](guides/development-pipeline.md) | Phase-based workflow for algorithm and code development |
 | [Context Management](guides/context-management.md) | Keep subagent prompts lean -- pass paths, not full files |
 | [Security Guardrails](guides/security-guardrails.md) | Tool permissions, path restrictions, prompt injection defense |
 | [Learning Loop](guides/learning-loop.md) | Turn failures into prevention -- debug KB, error SOP, quarterly audits |
@@ -189,6 +193,15 @@ PRs welcome for:
 - War stories: documented failure modes and how you solved them
 
 Please include **when you hit the problem** and **what you tried first**, not just the final solution.
+
+## Research Basis
+
+The development workflow patterns (Challenge Loop, Code Review, Spec-Driven Development, Development Pipeline) are grounded in a systematic 4-track deep research synthesis conducted in April 2026:
+
+- **Track A**: Quantitative strategy development lifecycle (academic literature from 2018-2026 plus practitioner sources from Two Sigma, D.E. Shaw, Man AHL, Winton, and Jane Street)
+- **Track B**: AI-assisted software engineering from 2024-2026 (the SWE-bench ecosystem, MetaGPT, AgentCoder, FunSearch, AlphaCodium, and the MAST failure taxonomy)
+
+Key sources include Bailey et al. on PBO, Marcos Lopez de Prado on AFML, debate work from ICML 2024, code-generation research from ICML 2024, DeepMind's orchestration scaling study, Huang et al. on self-correction at ICLR 2024, and the UC Berkeley MAST taxonomy presented as a NeurIPS 2025 Spotlight.
 
 ## License
 

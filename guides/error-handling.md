@@ -70,6 +70,29 @@ Error occurs →
   └─ (Should never reach here. If it does → Escalate)
 ```
 
+## Fix Loop Hard Cap
+
+Fix loops need a ceiling. Research across agent failure studies keeps finding the same pattern: the first few rounds help, then the loop starts reinforcing the wrong approach.
+
+Use two caps:
+
+| Cap | Rule | Why |
+|-----|------|-----|
+| **Soft cap: 3 rounds** | Expect real progress in the first 2-3 passes | Research summarized in the MAST taxonomy found overthinking loops made up 39.3% of errors in a financial processing benchmark |
+| **Hard cap: 10 rounds** | Stop and escalate with the current best state plus an unresolved-issues list | Past this point, you are paying to churn |
+
+Failure studies on SWE-bench Verified also found failed issues consumed 3.5x more interaction steps than successful ones. Long fix loops are usually a warning, not a sign of persistence paying off.
+
+## Expert-Executor Escalation
+
+When an executor stalls at round 2, stop asking it to "try a different fix" blindly. Escalate to the orchestrator or a senior agent and ask a higher-order question:
+
+- Is the problem in the spec or the implementation?
+- Are we validating the right thing?
+- Do we need a different approach entirely?
+
+This is the **Expert-Executor** pattern. Research on failed issue recovery found it recovered 22.2% of previously failed issues, versus 7% for single-agent retry.
+
 ## Retry Best Practices
 
 ### Exponential backoff with jitter
@@ -146,6 +169,14 @@ A request times out after 90 seconds. Three more requests queued up behind it. T
 Agent produces a wrong analysis. You retry. Same wrong analysis. Retry. Same. Three retries wasted.
 
 **Fix**: Logic errors need a different prompt or different context, not the same prompt repeated. Give specific feedback about what's wrong.
+
+### Validation Retreat
+
+The agent cannot fix the code cleanly, so it weakens the tests instead. Now the suite is green, but the bug remains.
+
+**Pattern**: Tests changed during the fix loop, but the change is not justified by the spec.
+
+**Fix**: Every review pass should check whether test edits happened, whether they were necessary, and whether the system became more correct or just easier to satisfy.
 
 ## Error Event Format
 

@@ -133,6 +133,35 @@ Task envelopes reduce cost in three ways:
 
 A well-written envelope typically saves 2-3x the tokens of an unstructured prompt, because the subagent doesn't waste cycles figuring out what you want.
 
+## Advanced: Structured Handoff Schema
+
+When the task is complex, a normal envelope is still not enough. Add a **Structured Handoff Schema** on top of it:
+
+```markdown
+- **Objective**: What must be achieved
+- **Context**: Constraints the agent cannot infer on its own
+- **Acceptance Criteria**: How "done" will be validated
+- **Interface Contract**: What inputs, outputs, or APIs must not drift
+- **Anti-patterns**: Failure modes to actively avoid
+- **Review Checklist**: What the reviewer must verify
+```
+
+This is especially useful when the task will pass through multiple agents. Research on MetaGPT suggests the real gain came from SOP-style structured outputs, not from giving agents fancy role personas. The format constrained what downstream agents could misread.
+
+### For algorithm work
+
+Add a seventh field: **Data Integrity Requirements**
+
+```markdown
+- **Data Integrity Requirements**:
+  - No look-ahead leakage
+  - Point-in-time data only
+  - Purge + embargo splits where overlap can leak signal
+  - Realistic transaction costs and slippage
+```
+
+This field exists because algorithm agents will happily produce a beautiful false edge if the handoff does not explicitly forbid it.
+
 ---
 
 *See also: [Templates](../templates/task-envelope.md) for copy-paste formats, [Context Management](../guides/context-management.md) for input optimization.*
